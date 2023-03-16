@@ -1,0 +1,19 @@
+{
+    "name": "velstack/pusher",
+    "description": "Sending sms the easiest way in laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Velstack\\Pusher\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sammy Fort",
+            "email": "sam@velstack.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
