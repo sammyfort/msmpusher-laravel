@@ -23,7 +23,6 @@ class VelstackSMS
 
     public function __construct()
     {
-        $this->apiKey = config('velstack.VELSTACK_PUSHER_API');
         $this->private = config('velstack.VELSTACK_PUSHER_PRIVATE');
         $this->public = config('velstack.VELSTACK_PUSHER_PUBLIC');
         $this->sender = config('velstack.VELSTACK_PUSHER_SENDER_ID');
