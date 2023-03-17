@@ -31,8 +31,6 @@ return  [
 
 ```
 
-
-
 #### Send a quick SMS
 
 ```php

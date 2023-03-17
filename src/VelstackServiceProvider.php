@@ -19,6 +19,8 @@ class VelstackServiceProvider extends ServiceProvider
         Notification::extend('pusher', function ($app) {
             return new PusherChannel();
         });
+
+
     }
 
     /**
@@ -32,6 +34,8 @@ class VelstackServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/velstack.php' => config_path('velstack.php'),
         ], 'velstack');
+
+        $this->mergeConfigFrom( __DIR__.'/config/velstack.php', 'velstack');
     }
 
 }

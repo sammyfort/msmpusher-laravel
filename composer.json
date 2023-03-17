@@ -15,5 +15,16 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Velstack\\Pusher\\SMSProvider"
+            ],
+            "aliases": {
+                "Debugbar": "Velstack\\Pusher\\Facade"
+            }
+        }
+    }
 }
