@@ -41,6 +41,7 @@ return  [
 ```php
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Velstack\Pusher\SMS;
 use Illuminate\Http\Request;
 
@@ -51,6 +52,19 @@ class UserController extends  Controller{
   public function send(){
   SMS::sendQuickSMS(['recipient'=> '233205550368', 'message'=> 'Your payment has been confirmed !']);
   }
+  
+  // to multiple numbers 
+  public function toMany(){
+  SMS::sendQuickSMS(['recipient'=> '23320*******, 23320*******', 'message'=> 'Your payment has been confirmed !']);
+  }
+  
+  // or
+   public function fromDatabase(){
+   $users =  User::pluck('phone');
+   foreach ($users as $user)
+  SMS::sendQuickSMS(['recipient'=> $user, 'message'=> 'Your payment has been confirmed !']);
+  }
+  
   
   
   /** you can also use this approach. This approach will send the message to the authenticated user in your database.
