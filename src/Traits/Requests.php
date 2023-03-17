@@ -10,7 +10,7 @@ use Velstack\Pusher\SMS;
 trait Requests
 {
 
-    public static function postRequest($data=null){
+    private static function postRequest($data=null){
 
         $pusher = Http::withHeaders([
             "Content-Type" =>  "application/json",

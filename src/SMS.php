@@ -9,7 +9,7 @@ class SMS
     use Campaign;
 
 
-    public static function endPoint(): string{
+    private static function endPoint(): string{
         return 'https://api.msmpusher.net/v1/velstack';
     }
 
