@@ -3,44 +3,41 @@
 
 namespace Velstack\Pusher\Traits;
 
+use Velstack\Pusher\SMS;
 
-use Illuminate\Support\Facades\Http;
 
 
 trait Campaign
 {
+    use Requests;
 
-    public function sendQuickSMS(array $recipient, $message=null){
+    public static function sendQuickSMS($data){
         $data = [
-            "privatekey" => $this->private,
-            "publickey" => $this->public,
-            "sender" => $this->sender,
-            "numbers" =>  $recipient,
-            "message" =>   $message ?: $this->message
+            "privatekey" => SMS::privateKey(),
+            "publickey" => SMS::publicKey(),
+            "sender" => SMS::senderId(),
+            "numbers" =>  $data['recipient'],
+            "message" =>   $data['message']
         ];
-
-        $pusher = Http::withHeaders([
-            "Content-Type" =>  "application/json",
-            "Accept: application/json"
-        ])->post($this->quickSMSURL,  $data);
-
+        $pusher = self::postRequest($data);
         return $pusher;
     }
 
-    public function pushToAuth(array $message=null){
+    public static function notify($data){
         $data = [
-            "privatekey" => $this->private,
-            "publickey" => $this->public,
-            "sender" => $this->sender,
+            "privatekey" => SMS::privateKey(),
+            "publickey" => SMS::publicKey(),
+            "sender" => SMS::senderId(),
             "numbers" =>  auth()->user()->phone,
-            "message" =>   $message ?: $this->message
+            "message" =>   $data['message']
         ];
-
-        $pusher = Http::withHeaders([
-            "Content-Type" =>  "application/json",
-            "Accept: application/json"
-        ])->post($this->quickSMSURL,  $data);
-
+        $pusher = self::postRequest($data);
         return $pusher;
     }
+
+
+
+
+
+
 }

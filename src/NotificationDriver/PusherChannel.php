@@ -4,7 +4,7 @@
 namespace Velstack\Pusher\NotificationDriver;
 
 use Velstack\Pusher\Traits\Campaign;
-use Velstack\Pusher\VelstackSMS;
+use Velstack\Pusher\SMS;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Log;
 
@@ -20,10 +20,10 @@ class PusherChannel
             $phone = $notifiable->phone;
         }
 
-        $message = $notification->toVelstack($notifiable);
+        $message = $notification->toPusher($notifiable);
 
-       // $notifier = new VelstackSMS();
-        $response = VelstackSMS::sendQuickSMS(['recipient'=>$phone, 'message'=> $message->content]);
+       // $notifier = new SMS();
+        $response = SMS::sendQuickSMS(['recipient'=>$phone, 'message'=> $message->content]);
         Log::info("Pusher response => $response");
         return $response;
     }
