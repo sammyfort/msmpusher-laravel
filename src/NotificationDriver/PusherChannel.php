@@ -23,7 +23,7 @@ class PusherChannel
         $message = $notification->toPusher($notifiable);
 
        // $notifier = new SMS();
-        $response = SMS::sendQuickSMS($phone, $message->content);
+        $response = SMS::sendQuickSMS($phone, $message->content());
         Log::info("Pusher response => $response");
         return $response;
     }
