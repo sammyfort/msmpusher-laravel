@@ -14,18 +14,26 @@ class PusherChannel
 
     public function send($notifiable, Notification $notification)
     {
-        if (method_exists($notifiable, 'routeNotificationForPusher')) {
-            $phone = $notifiable->routeNotificationForPusher($notifiable);
+        if (method_exists($notifiable, 'setNotificationMedium')) {
+            $phone = $notifiable->setNotificationMedium($notifiable);
         } else {
             $phone = $notifiable->phone;
         }
 
+        if (is_null($phone)){
+           return  response()->json('Destination phone is empty', 400);
+        }
+
         $message = $notification->toPusher($notifiable);
 
-       // $notifier = new SMS();
-        $response = SMS::sendQuickSMS($phone, $message->content());
-        Log::info("Pusher response => $response");
-        return $response;
+        // $notifier = new SMS();
+        try {
+            $response = SMS::sendQuickSMS($phone, $message->content());
+            return $response;
+        }catch (\Exception $exception){
+            Log::info("Pusher response => $exception");
+            throw $exception;
+        }
     }
 
 }

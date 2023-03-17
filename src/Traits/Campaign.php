@@ -25,13 +25,13 @@ trait Campaign
         return $pusher;
     }
 
-    public static function notify($data){
+    public static function notify($message=null){
         $data = [
             "privatekey" => SMS::privateKey(),
             "publickey" => SMS::publicKey(),
             "sender" => SMS::senderId(),
             "numbers" =>  auth()->user()->phone,
-            "message" =>   $data['message']
+            "message" =>   $message
         ];
         $pusher = self::postRequest($data);
         return $pusher;

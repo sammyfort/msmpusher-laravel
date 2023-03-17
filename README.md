@@ -24,11 +24,11 @@ Then get your api keys from your msmpusher.com client area and set these keys in
 ```php
 return  [
 
-'VELSTACK_PUSHER_PRIVATE'=>  '****your_private_key',
+'PUSHER_PRIVATE_KEY'=>  '****your_private_key',
 
-'VELSTACK_PUSHER_PUBLIC'=> '****your_public_key',
+'PUSHER_PUBLIC_KEY'=> '****your_public_key',
 
-'VELSTACK_PUSHER_SENDER_ID'=> '****senderID'
+'PUSHER_SENDER_ID'=> '****senderID'
 
 //make sure VELSTACK_PUSHER_SENDER_ID value is already set on your msmpusher.com dashboard
 
@@ -47,22 +47,23 @@ use Illuminate\Http\Request;
 
 class UserController extends  Controller{
 
-  // sending sms statically
+  // sending a quick sms
   
   public function send(){
-  SMS::sendQuickSMS(['recipient'=> '233205550368', 'message'=> 'Your payment has been confirmed !']);
+  SMS::sendQuickSMS('233205550368', 'Your payment has been confirmed !');
   }
   
   // to multiple numbers 
   public function toMany(){
-  SMS::sendQuickSMS(['recipient'=> '23320*******, 23320*******', 'message'=> 'Your payment has been confirmed !']);
+  SMS::sendQuickSMS('23320*******, 23320*******',  'Your payment has been confirmed !');
   }
   
-  // or
+  // OR
+  
    public function fromDatabase(){
    $users =  User::pluck('phone');
    foreach ($users as $user)
-  SMS::sendQuickSMS(['recipient'=> $user, 'message'=> 'Your payment has been confirmed !']);
+  SMS::sendQuickSMS($user, 'Your payment has been confirmed !');
   }
   
   
@@ -73,7 +74,7 @@ class UserController extends  Controller{
  **/
  
  public function toAuthUser(){
-  SMS::notify(['message'=> 'Your subscription is expiring in 3 days.']);
+  SMS::notify('Your subscription is expiring in 3 days.');
   }
   
   
@@ -81,11 +82,11 @@ class UserController extends  Controller{
   
   public function welcomeMessage(){
    $sender = new SMS();
-   $sender->sendQuickSMS(['recipient'=> '233205550368', 'message'=> 'Thank you for registering on our website !']);
+   $sender->sendQuickSMS( '233205550368',   'Thank you for registering on our website !');
    
    #OR
    $sender = new SMS();
-   $sender->notify(['message'=> 'Thank you for registering on our website !']);
+   $sender->notify('Thank you for registering on our website !');
    
   }
   

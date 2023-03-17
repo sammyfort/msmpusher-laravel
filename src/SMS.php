@@ -14,15 +14,17 @@ class SMS
     }
 
     private static  function privateKey(): string{
-        return config('velstack.VELSTACK_PUSHER_PRIVATE') ?? response()->json('error', 500);
+        return config('velstack.PUSHER_PRIVATE_KEY') ?? response()->json('error', 400);
     }
 
     private static  function publicKey(): string{
-        return  config('velstack.VELSTACK_PUSHER_PUBLIC') ?? response()->json('error', 500);
+        return  config('velstack.PUSHER_PUBLIC_KEY') ?? response()->json('error', 400);
     }
 
     private static function senderId(): string{
-        return config('velstack.VELSTACK_PUSHER_SENDER_ID') ?? response()->json('error', 500);
+        return config('velstack.PUSHER_SENDER_ID') ?? response()->json('error', 400);
     }
+
+
 
 }
