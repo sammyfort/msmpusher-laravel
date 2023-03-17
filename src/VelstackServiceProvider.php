@@ -30,12 +30,12 @@ class VelstackServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        $this->mergeConfigFrom( __DIR__.'/config/velstack.php', 'velstack');
+
         $this->publishes([
             __DIR__.'/config/velstack.php' => config_path('velstack.php'),
         ], 'velstack');
-
-        $this->mergeConfigFrom( __DIR__.'/config/velstack.php', 'velstack');
     }
 
 }

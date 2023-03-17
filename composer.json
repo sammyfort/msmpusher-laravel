@@ -20,11 +20,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Velstack\\Pusher\\SMSProvider"
-            ],
-            "aliases": {
-                "Debugbar": "Velstack\\Pusher\\Facade"
-            }
+                "Velstack\\Pusher\\VelstackServiceProvider"
+            ]
         }
     }
 }
