@@ -13,7 +13,12 @@ install with composer
 
 ## Usage/Examples
 
-The installation will create a  __DIR__.'/config/velstack.php' file. However, if doesn't you can create it manually.
+The installation will create a  __DIR__.'/config/velstack.php' file. However, if doesn't you can run the command below.
+
+```bash
+php artisan vendor:publish --tag=velstack
+```
+
 Then get your api keys from your msmpusher.com client area and set these keys in your velstack.php file
 
 ```php
