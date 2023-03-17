@@ -31,7 +31,7 @@ class VelstackServiceProvider extends ServiceProvider
         //
         $this->publishes([
             __DIR__.'/config/velstack.php' => config_path('velstack.php'),
-        ]);
+        ], 'velstack');
     }
 
 }
