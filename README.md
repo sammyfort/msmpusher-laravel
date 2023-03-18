@@ -154,6 +154,7 @@ class WelcomeNotification extends Notification
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\WelcomeNotification;
  
 
 class NotificationController extends  Controller{
