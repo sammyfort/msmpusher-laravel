@@ -197,7 +197,7 @@ class NotificationController extends  Controller{
 
 ###### NOTE:
 * `Using the notification channel, you must have a 'phone' column on the target table.
-  If your target table doesn't have a 'phone' column, set a setNotificationMedium() method in your model and specify the column like below;`
+  If your target table doesn't have a 'phone' column, set a setPhoneColumnForSMS() method in your model and specify the column where you store phone numbers like below;`
 ```php
 
 namespace App\Models;
@@ -222,7 +222,7 @@ class User extends Authenticatable
         'password',
     ];
     
-    public function setNotificationMedium(){
+    public function setPhoneColumnForSMS(){
      return auth()->user()->some_phone_column;
     }
 
@@ -279,7 +279,7 @@ class User extends Authenticatable
     "type": "Insufficient balance",
     "code": 1003,
     "error": "Insufficient balance",
-    "detail": null
+    "detail": "Your Unit is insufficient to send messages. Please Top Up Your MSMPUSHER Digital Wallet"
         
     }
 

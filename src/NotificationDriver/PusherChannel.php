@@ -14,8 +14,8 @@ class PusherChannel
 
     public function send($notifiable, Notification $notification)
     {
-        if (method_exists($notifiable, 'setNotificationMedium')) {
-            $phone = $notifiable->setNotificationMedium($notifiable);
+        if (method_exists($notifiable, 'setPhoneColumnForSMS')) {
+            $phone = $notifiable->setPhoneColumnForSMS($notifiable);
         } else {
             $phone = $notifiable->phone;
         }
