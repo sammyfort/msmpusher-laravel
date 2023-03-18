@@ -69,7 +69,7 @@ class UserController extends  Controller{
   // to multiple numbers 
   public function toMany()
   {
-    SMS::sendQuick('23320*******, 23320*******',  'Your payment has been confirmed !');
+    SMS::sendQuick('23320*******, 23320*******',  'This message is sent from the MSMPUSHER API. hurray!');
   }
   
     // OR
@@ -78,7 +78,7 @@ class UserController extends  Controller{
    {
      $users =  User::pluck('phone');
      foreach ($users as $user)
-     SMS::sendQuick($user, 'Your payment has been confirmed !');
+     SMS::sendQuick($user, 'Go afternoon all users !');
    }
   
   
@@ -117,7 +117,7 @@ class UserController extends  Controller{
         "sms_id": "MSG_TRANS_1603120251942",
         "Receiver_numbers": "23320555038",
         "error": "Null",
-        "detail": "All Messages was sent successfully"
+        "detail": "All Messages were sent successfully"
         
     }
 
@@ -238,4 +238,123 @@ class User extends Authenticatable
 } 
 ```
 
+#### status codes
+```json
+ {
+        "type": "Message(s) Sent",
+        "status": 1000,
+        "sms_id": "MSG_TRANS_1603120251942",
+        "Receiver_numbers": "23320555038",
+        "error": "Null",
+        "detail": "All Messages was sent successfully"
+        
+    }
 
+```
+
+```json
+ {
+    "type": "Not All Messages were sent successfully due to insufficient balance",
+    "code": 1001,
+    "error": "Insufficient balance",
+    "detail": null
+        
+    }
+
+```
+
+```json
+ {
+    "type": "Missing API Parameters",
+    "code": 1002,
+    "error": "Missing API Parameters",
+    "detail": "Incorrect private_key or public_key, or message data parameter"
+        
+    }
+
+```
+
+```json
+ {
+    "type": "Insufficient balance",
+    "code": 1003,
+    "error": "Insufficient balance",
+    "detail": null
+        
+    }
+
+```
+
+
+```json
+ {
+    "type": "Mismatched API key",
+    "code": 1004,
+    "error": "Mismatched API key",
+    "detail": "Incorrect api key"
+        
+    }
+
+```
+
+```json
+ {
+    "type": "invalid_phone_number",
+    "code": 1005,
+    "error": "Invalid phone number",
+    "detail": null
+    }
+
+```
+
+
+```json
+ {
+    "type": "invalid Sender ID",
+    "code": 1006,
+    "error": "invalid Sender ID",
+    "detail": "Sender ID must not be more than 11 Characters. Characters include white space."
+    }
+
+```
+
+```json
+ {
+    "type": "Message scheduled for later delivery",
+    "code": 1007,
+    "error": "Message scheduled for later delivery",
+    "detail": null
+    }
+
+```
+
+
+```json
+ {
+    "type": "Empty Message",
+    "code": 1008,
+    "error": "Message string is empty",
+    "detail": null
+    }
+
+```
+
+```json
+ {
+    "type": "SMS sending failed",
+    "code": 1009,
+    "error": "SMS sending failed",
+    "detail": null
+    }
+
+```
+
+```json
+ {
+    "type": "No messages has been sent on the specified dates using the specified api key",
+    "code": 1010,
+    "error": "No messages has been sent on the specified dates using the specified api key",
+    "detail": null
+    }
+
+```
