@@ -36,6 +36,20 @@ return  [
 ];
 
 ```
+Register the service provider in `'/config/app.php'` provider array
+
+```php
+'providers' => [
+
+   Velstack\Pusher\VelstackServiceProvider::class,
+];
+
+'aliases'=> [
+
+ 'SMS'=>   Velstack\Pusher\Facades::class
+];
+ 
+```
 
 #### Send a quick SMS
 
@@ -97,6 +111,19 @@ class UserController extends  Controller{
   
 }
  
+```
+#### output
+```json
+ {
+        "type": "Message(s) Sent",
+        "status": 1000,
+        "sms_id": "MSG_TRANS_1603120251942",
+        "Receiver_numbers": "23320555038",
+        "error": Null,
+        "detail": All Messages was sent successfully
+        
+    }
+
 ```
 
 

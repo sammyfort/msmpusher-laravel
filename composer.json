@@ -21,7 +21,10 @@
         "laravel": {
             "providers": [
                 "Velstack\\Pusher\\VelstackServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Debugbar": "Velstack\\Pusher\\Facade"
+            }
         }
     }
 }
