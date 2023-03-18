@@ -1,7 +1,7 @@
 
 ## LARAVEL msmPusher PACKAGE
 
-This package allows you to send SMS notifications using msmPusher.com APIs very easy in laravel projects.
+This package allows you to send SMS notifications using [MSMPusher](https://msmpusher.com/) APIs very easy in laravel projects.
 
 ## Installation
 
@@ -20,7 +20,7 @@ The installation will create a  `'/config/velstack.php'` file. However, if doesn
 php artisan vendor:publish --tag=velstack
 ```
 
-Then get your api keys from your msmpusher.com client area and set these keys in your velstack.php file
+Then get your api keys from your [msmpusher.com](https://msmpusher.com/) client area and set these keys in your velstack.php file
 
 ```php
 return  [
@@ -36,7 +36,7 @@ return  [
 ];
 
 ```
-Register the service provider in `'/config/app.php'` provider array
+Register the service provider in `'/config/app.php'` providers array
 
 ```php
 'providers' => [
