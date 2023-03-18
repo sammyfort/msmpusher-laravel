@@ -55,7 +55,7 @@ Register the service provider in `'/config/app.php'` providers array
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Velstack\Pusher\SMS;
-use Illuminate\Http\Request;
+ 
 
 class UserController extends  Controller{
 
