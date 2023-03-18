@@ -11,7 +11,7 @@ install with composer
   composer require velstack/pusher
 ```
 
-## Usage/Examples
+## Configuration
 
 
 The installation will create a  `'/config/velstack.php'` file. However, if doesn't you can run the command below.
@@ -48,7 +48,7 @@ Register the service provider in `'/config/app.php'` providers array
  
 ```
 
-#### Send a quick SMS
+## Send a quick SMS
 
 ```php
 
