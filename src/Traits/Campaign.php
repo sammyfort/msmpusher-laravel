@@ -12,7 +12,7 @@ trait Campaign
 {
     use Requests;
 
-    public static function sendQuickSMS($recipients, $message=null){
+    public static function sendQuick($recipients, $message=null){
         $def = new PusherMessage();
         $data = [
             "privatekey" => SMS::privateKey(),
@@ -36,10 +36,5 @@ trait Campaign
         $pusher = self::postRequest($data);
         return $pusher;
     }
-
-
-
-
-
 
 }

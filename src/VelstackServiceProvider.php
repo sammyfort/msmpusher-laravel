@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Notification;
 class VelstackServiceProvider extends ServiceProvider
 {
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         Notification::extend('pusher', function ($app) {
@@ -23,11 +19,7 @@ class VelstackServiceProvider extends ServiceProvider
 
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
+
     public function boot()
     {
 

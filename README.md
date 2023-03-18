@@ -66,13 +66,13 @@ class UserController extends  Controller{
   
   public function send()
   {
-    SMS::sendQuickSMS('233205550368', 'Your payment has been confirmed !');
+    SMS::sendQuick('233205550368', 'Your payment has been confirmed !');
   }
   
   // to multiple numbers 
   public function toMany()
   {
-    SMS::sendQuickSMS('23320*******, 23320*******',  'Your payment has been confirmed !');
+    SMS::sendQuick('23320*******, 23320*******',  'Your payment has been confirmed !');
   }
   
     // OR
@@ -81,7 +81,7 @@ class UserController extends  Controller{
    {
      $users =  User::pluck('phone');
      foreach ($users as $user)
-     SMS::sendQuickSMS($user, 'Your payment has been confirmed !');
+     SMS::sendQuick($user, 'Your payment has been confirmed !');
    }
   
   
@@ -102,7 +102,7 @@ class UserController extends  Controller{
   public function welcomeMessage()
   {
     $sender = new SMS();
-    $sender->sendQuickSMS( '233205550368',   'Thank you for registering on our website !');
+    $sender->sendQuick( '233205550368',   'Thank you for registering on our website !');
    
     #OR
     $sender = new SMS();
