@@ -78,7 +78,7 @@ class UserController extends  Controller{
    {
      $users =  User::pluck('phone');
      foreach ($users as $user)
-     SMS::sendQuick($user, 'Go afternoon all users !');
+     SMS::sendQuick($user, 'Good afternoon all users !');
    }
   
   
