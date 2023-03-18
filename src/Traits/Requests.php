@@ -19,7 +19,7 @@ trait Requests
         ])->post(SMS::endPoint(),  $data);
         $pusher->throw();
         if ($pusher['status'] != 1000){
-            return  response()->json(json_decode($pusher), 500);
+            return  response()->json(json_decode($pusher), 400);
         }
         return $pusher;
     }

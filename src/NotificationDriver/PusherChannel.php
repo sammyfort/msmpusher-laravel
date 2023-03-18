@@ -29,7 +29,7 @@ class PusherChannel
         // $notifier = new SMS();
         try {
             $response = SMS::sendQuick($phone, $message->content());
-            return $response;
+            return json_decode($response);
         }catch (\Exception $exception){
             Log::info("Pusher response => $exception");
             throw $exception;

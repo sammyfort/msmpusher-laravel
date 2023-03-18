@@ -44,10 +44,7 @@ Register the service provider in `'/config/app.php'` provider array
    Velstack\Pusher\VelstackServiceProvider::class,
 ];
 
-'aliases'=> [
-
- 'SMS'=> Velstack\Pusher\Facades::class
-];
+ 
  
 ```
 
