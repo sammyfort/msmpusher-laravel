@@ -119,8 +119,8 @@ class UserController extends  Controller{
         "status": 1000,
         "sms_id": "MSG_TRANS_1603120251942",
         "Receiver_numbers": "23320555038",
-        "error": Null,
-        "detail": All Messages was sent successfully
+        "error": "Null",
+        "detail": "All Messages was sent successfully"
         
     }
 
