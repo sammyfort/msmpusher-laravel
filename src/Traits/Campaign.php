@@ -3,6 +3,8 @@
 
 namespace Velstack\Pusher\Traits;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
 use Velstack\Pusher\NotificationDriver\PusherMessage;
 use Velstack\Pusher\SMS;
 
@@ -26,11 +28,17 @@ trait Campaign
     }
 
     public static function notify($message=null){
+        $object = User::findOrFail(auth()->id());
+        if (method_exists($object, 'setPhoneColumnForSMS')) {
+            $phone = $object->setPhoneColumnForSMS($object);
+        } else {
+            $phone = $object->phone;
+        }
         $data = [
             "privatekey" => SMS::privateKey(),
             "publickey" => SMS::publicKey(),
             "sender" => SMS::senderId(),
-            "numbers" =>  auth()->user()->phone,
+            "numbers" =>   $phone,
             "message" =>   $message
         ];
         $pusher = self::postRequest($data);
