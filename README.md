@@ -206,8 +206,8 @@ class NotificationController extends  Controller{
   }
   
   
-//  Using this notification channel, you must have a 'phone' column on the model table.
-//  If your target table doesn't have a 'phone' column, set a setPhoneColumnForSMS() method 
+//  Using this notification channel, you must have a 'phone' column on the model fillable.
+//  If your target model doesn't have a 'phone' column, set a setPhoneColumnForSMS() method 
 //  in your model and specify the column where you store phone numbers like below;
   
 }
@@ -215,6 +215,8 @@ class NotificationController extends  Controller{
 ```
 
 #### In your model:
+
+Make sure your model uses the `Notifiable` Trait
 
 ```php
 
@@ -241,7 +243,7 @@ class User extends Authenticatable
     ];
     
     public function setPhoneColumnForSMS(){
-     return 'some_phone_column';
+     return $this->getAttributeValue('some_phone_column');
     }
 
 
