@@ -3,6 +3,7 @@
 
 namespace Velstack\Pusher\NotificationDriver;
 
+use Illuminate\Notifications\AnonymousNotifiable;
 use Velstack\Pusher\Traits\Campaign;
 use Velstack\Pusher\SMS;
 use Illuminate\Notifications\Notification;
@@ -14,9 +15,16 @@ class PusherChannel
 
     public function send($notifiable, Notification $notification)
     {
-        if (method_exists($notifiable, 'setPhoneColumnForSMS')) {
+        if (method_exists($notifiable, 'setPhoneColumnForSMS'))
+        {
             $phone = $notifiable->setPhoneColumnForSMS($notifiable);
-        } else {
+        }
+        elseif ($notifiable instanceof  AnonymousNotifiable)
+        {
+            $phone = $notifiable->routeNotificationFor('pusher');
+        }
+        else
+        {
             $phone = $notifiable->phone;
         }
 
@@ -26,7 +34,7 @@ class PusherChannel
 
         $message = $notification->toPusher($notifiable);
 
-        // $notifier = new SMS();
+        // $notifier = new VelstackSMS() => SMS::class;
         try {
             $response = SMS::sendQuick($phone, $message->content());
             return json_decode($response);

@@ -85,9 +85,9 @@ class UserController extends  Controller{
   
   /** you can also call the 'notify'. 
  * This approach will send the message to the authenticated user in your application.
- * so you don't need to pass a recipient. 
+ * So you don't need to pass a recipient. This must only be called on App\Models\User model.
  * NOTE: your Table must contain a 'phone' column. If doesn't, you may set a 'setPhoneColumnForSMS()'
- * method in your model to return the custom column where you store phone numbers. eg.@after 
+ * method in your User::class model to return the custom column where you store phone numbers. eg.@after 
  * 
  * public function setPhoneColumnForSMS(){
      return auth()->user()->some_phone_column;
@@ -185,6 +185,7 @@ class WelcomeNotification extends Notification
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
+use Illuminate\Support\Facades\Notification;
  
 
 class NotificationController extends  Controller{
@@ -195,6 +196,18 @@ class NotificationController extends  Controller{
   {
     $user = User::find(1);
     $user->notify(new WelcomeNotification);
+  }
+  
+  
+//  Sometimes you may need to send a notification to someone who 
+//  is not stored as a "user" of your application. Using the 
+//  Notification facade's route method, you may specify 'pusher' 
+//  notification driver followed by the recipient before sending the notification.
+  
+  
+  public function onDemandNotification()
+  { 
+    Notification::route('pusher', '020***0368')->notify(new WelcomeNotification());
   }
   
 }
