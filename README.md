@@ -64,12 +64,14 @@ class UserController extends  Controller{
   public function send()
   {
     SMS::sendQuick('233205550368', 'Your payment has been confirmed !');
+    return 'Message sent successfully';
   }
   
   // to multiple numbers 
   public function toMany()
   {
     SMS::sendQuick('23320*******, 23320*******',  'This message is sent from the MSMPUSHER API. hurray!');
+    return 'Message sent';
   }
   
     // OR
@@ -79,6 +81,7 @@ class UserController extends  Controller{
      $users =  User::pluck('phone');
      foreach ($users as $user)
      SMS::sendQuick($user, 'Good afternoon all users !');
+     return 'Message has been to all users successfully';
    }
   
   
@@ -97,6 +100,7 @@ class UserController extends  Controller{
  public function toAuthUser()
  {
    SMS::notify('Your subscription is expiring in 3 days.');
+   return 'Message sent successfully';
  }
   
   
@@ -110,6 +114,8 @@ class UserController extends  Controller{
     #OR
     $sender = new SMS();
     $sender->notify('Thank you for registering on our website !');
+    
+    return 'Message sent successfully';
   }
   
 }
@@ -162,7 +168,7 @@ class WelcomeNotification extends Notification
 
     public function toPusher($notifiable)
     {
-        return (new PusherMessage())->message("Dear $notifiable->firstname, than you for showing up.");
+        return (new PusherMessage())->message("Dear $notifiable->firstname, Welcome to Velstack !.");
 
     }
 
@@ -196,27 +202,20 @@ class NotificationController extends  Controller{
   {
     $user = User::find(1);
     $user->notify(new WelcomeNotification);
+    return 'Message sent successfully';
   }
   
   
-//  Sometimes you may need to send a notification to someone who 
-//  is not stored as a "user" of your application. Using the 
-//  Notification facade's route method, you may specify 'pusher' 
-//  notification driver followed by the recipient before sending the notification.
-  
-  
-  public function onDemandNotification()
-  { 
-    Notification::route('pusher', '020***0368')->notify(new WelcomeNotification());
-  }
+//  Using this notification channel, you must have a 'phone' column on the model table.
+//  If your target table doesn't have a 'phone' column, set a setPhoneColumnForSMS() method 
+//  in your model and specify the column where you store phone numbers like below;
   
 }
  
 ```
 
-###### NOTE:
-* `Using the notification channel, you must have a 'phone' column on the target table.
-  If your target table doesn't have a 'phone' column, set a setPhoneColumnForSMS() method in your model and specify the column where you store phone numbers like below;`
+#### In your model:
+
 ```php
 
 namespace App\Models;
@@ -242,19 +241,47 @@ class User extends Authenticatable
     ];
     
     public function setPhoneColumnForSMS(){
-     return auth()->user()->some_phone_column;
+     return 'some_phone_column';
     }
 
 
-    
-   
-    
+     
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
      
 } 
+```
+
+#### sending on demand notification;
+
+```php
+
+use App\Http\Controllers\Controller;
+use App\Notifications\WelcomeNotification;
+use Illuminate\Support\Facades\Notification;
+ 
+
+class NotificationController extends  Controller{
+
+  // sending notification
+  
+  
+//  Sometimes you may need to send a notification to someone who 
+//  is not stored as a "user" of your application. Using the 
+//  Notification facade's route method, you may specify 'pusher' 
+//  notification driver followed by the recipient before sending the notification.
+  
+  
+  public function onDemandNotification()
+  { 
+    Notification::route('pusher', '020***0368')->notify(new WelcomeNotification());
+     return 'Message sent successfully';
+  }
+  
+}
+ 
 ```
 
 #### status codes
