@@ -93,7 +93,7 @@ class UserController extends  Controller{
  * method in your User::class model to return the custom column where you store phone numbers. eg.@after 
  * 
  * public function setPhoneColumnForSMS(){
-     return auth()->user()->some_phone_column;
+     return $this->getAttributeValue('some_phone_column');
     }
  **/
  
